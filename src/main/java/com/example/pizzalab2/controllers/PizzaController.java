@@ -30,7 +30,6 @@ public class PizzaController {
 
     @GetMapping("/pizzas")
     List<Pizza> getAllPizzas() {
-        System.out.println("All pizzas");
         return pizzaRepository.findAll();
     }
 
@@ -75,8 +74,8 @@ public class PizzaController {
         return new ResponseEntity<>(pizza,HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/pizzas")
-    void deletePizza(Long id) {
+    @DeleteMapping("/pizzas/{id}")
+    void deletePizza(@PathVariable Long id) {
         if (pizzaRepository.existsById(id)) {
             pizzaRepository.deleteById(id);
         } else {
